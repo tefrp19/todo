@@ -1,0 +1,40 @@
+@import url(../reset.css);
+/* 通用样式 */
+@import url(./common.css);
+
+/* 大屏三栏全部显示；平板右侧栏不显示（遮罩层）；手机左右侧都不显示（遮罩层） */
+/* 平板 */
+@media screen and (max-width:1200px) {
+    .task-detail {
+        /* display: none; */
+        position: absolute;
+        top: 0;
+        right: 0;
+        /* transform: translateX(10%); */
+        /* width: 0; */
+        overflow: hidden;
+    }
+
+    /* 右侧栏不展示 */
+    .rightColumn-exited {
+        width: 0;
+    }
+
+    /* 右侧栏展示 */
+    .rightColumn-entered {
+        width: 20rem;
+    }
+}
+
+/* 手机 */
+@media screen and (max-width:768px) {
+    aside {
+        width: 0;
+    }
+
+    .menu {
+        display: block;
+    }
+
+
+}

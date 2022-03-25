@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式登录页面</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <main>
+        <div class="cover">
+            <img src="img/loginCover.jpg" alt="">
+        </div>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div>
+                        <strong>登录使用todo</strong>
+                    </div>
+                    <div>
+                        没有账号？<a href="">现在注册</a>
+                    </div>
+                </div>
+
+                <form class="login" action="http://127.0.0.1:8000/login" method="post">
+                    <input class="text-input" type="text" placeholder="Username" name="username" >
+                    <input class="text-input" type="password" placeholder="Password" name="password">
+                    <button class="text-input login-btn">LOGIN NOW</button>
+
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="./js/login.js" type="module"></script>
+</body>
+
+</html>

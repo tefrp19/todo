@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>待办事项管理</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="shortcut icon" href="https://tse4-mm.cn.bing.net/th/id/OIP-C.xQJlilCdJ7U2ebPvc8DYLwHaIJ?pid=ImgDet&rs=1" type="image/x-icon">
+</head>
+
+<body>
+
+    <div style="display: flex;">
+        <table id="todoList" border="1px" cellspacing="0px">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>状态</th>
+                    <th>名称</th>
+                    <th>备注</th>
+                    <th>截止日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <div id="addMatter">
+            <form onsubmit="return false" autocomplete="off">
+                <div>添加事项</div>
+                <label for="name">名称</label>
+                <input type="text" name="name" id="matterName"><br>
+                <label for="remarks">备注</label>
+                <input type="text" name="remarks" id="remarks"><br>
+                <label for="deadline">截止日期</label>
+                <input type="datetime-local" name="deadline" id="deadline"><br>
+
+                <button>添加</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<!-- <script type="module" src="./js/index.js"></script>
+<script type="module" src="./js/request.js"></script> -->
+
+
+</html>

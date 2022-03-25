@@ -1,0 +1,95 @@
+@import url(./reset.css);
+
+
+
+a {
+    transition: all 0.5s;
+    color: #49c5b6;
+}
+
+a:hover {
+    color: #000;
+}
+
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.cover {
+    width: 50%;
+    height: 100%;
+}
+
+.cover img {
+    /* object-fit CSS 属性指定可替换元素（img 为可替换元素）的内容应该如何适应到其使用的高度和宽度确定的框。 */
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper {
+    height: 100%;
+    width: 50%;
+    background-color: #f4f7f6;
+    /* 实现居中的一种方式 */
+    position: relative;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 80%;
+    width: 60%;
+    /* background-color: aqua; */
+}
+
+.container .header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+}
+
+.text-input {
+    display: block;
+    height: 60px;
+    width: 100%;
+    padding: 0 15px;
+    margin-top: 50px;
+    background-color: #fff;
+    border: 1px solid #dbe0df;
+}
+
+/* input 的边框是 outline */
+.text-input:focus {
+    outline: none;
+}
+
+.login-btn {
+    font-weight: bold;
+    text-align: center;
+    line-height: 100%;
+    background-color: #49c5b6;
+    color: #fff;
+    transition: all .5s;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+    background-color: #42ab9e;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        width: 100%;
+    }
+
+    .cover {
+        display: none;
+    }
+}
