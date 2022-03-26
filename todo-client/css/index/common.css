@@ -96,6 +96,7 @@ main {
     flex-direction: column;
     padding: 0 3rem;
     background: url(../../img/bg.jpg) no-repeat center;
+    background-size: cover;
 }
 
 .mask {

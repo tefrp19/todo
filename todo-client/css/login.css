@@ -30,23 +30,15 @@ main {
 }
 
 .wrapper {
-    height: 100%;
-    width: 50%;
+    display: flex;
     background-color: #f4f7f6;
-    /* 实现居中的一种方式 */
-    position: relative;
+    justify-content: center;
+    flex-grow: 1;
 }
 
 .container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    height: 80%;
-    width: 60%;
-    /* background-color: aqua; */
+    width: 80%;
+    margin-top: 50px;
 }
 
 .container .header {
@@ -92,4 +84,10 @@ main {
     .cover {
         display: none;
     }
+
+    .container {
+        width: 80vw;
+        margin-top: 50px;
+    }
+
 }
