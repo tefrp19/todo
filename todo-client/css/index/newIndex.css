@@ -29,11 +29,25 @@
 /* 手机 */
 @media screen and (max-width:768px) {
     aside {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 0;
+        z-index: 1;
+    }
+
+    .add-list {
+        width: 0;
+        overflow: hidden;
+        padding: 0;
     }
 
     .menu {
         display: block;
+    }
+
+    .task-detail {
+        max-width: 60vw;
     }
 
 

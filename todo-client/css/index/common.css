@@ -1,6 +1,7 @@
 .root {
     height: 100vh;
     display: flex;
+    position: relative;
 }
 
 
@@ -12,7 +13,7 @@ aside {
     flex-direction: column;
     overflow: hidden;
     transition: width .3s ease;
-
+    min-height: 100vh;
 }
 
 /* 左右两侧栏 */
@@ -95,7 +96,6 @@ main {
     flex-direction: column;
     padding: 0 3rem;
     background: url(../../img/bg.jpg) no-repeat center;
-    position: relative;
 }
 
 .mask {
@@ -111,15 +111,18 @@ main {
 .menu {
     display: none;
     color: #fff;
+    margin-top: 10px;
+    width: 25px;
+    height: 25px;
 }
 
-.matters {
+.tasks {
     margin-top: 1rem;
-    flex-grow: 1;
+    margin-bottom: 1rem;
     overflow-y: auto;
 }
 
-.matters li {
+.tasks li {
     background-color: rgb(238, 239, 243);
     height: 4rem;
     line-height: 4rem;
@@ -157,11 +160,12 @@ main {
 .importance {
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
     width: 1.5rem;
     text-align: center;
     margin-right: 10px;
     transition: all .1s;
+    height: 100%;
 }
 
 .importance:hover {
@@ -169,7 +173,8 @@ main {
     color: red;
 }
 
-.matters li:hover {
+
+.tasks li:hover {
     background-color: rgb(237, 235, 233);
     cursor: pointer;
 }
@@ -191,6 +196,10 @@ main {
     border-radius: 3px;
     margin: 10px 0;
     background-color: rgb(253, 253, 253);
+}
+
+.task-detail .warpper>div:hover {
+    background-color: #F3F3F3;
 }
 
 .detail-header {
@@ -220,4 +229,24 @@ main {
     height: 100px;
     overflow: auto;
     padding: 10px;
+}
+
+.submit-task-modification {
+    display: block;
+    margin: 0 auto;
+    height: 50px;
+    width: 150px;
+    border: none;
+    background-color: #007bff;
+    border-color: #007bff;
+    text-align: center;
+    transition: background-color .3s;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.submit-task-modification:hover {
+    cursor: pointer;
+    background-color: #0069d9;
+    border-color: #0062cc;
 }
