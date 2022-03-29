@@ -7,18 +7,18 @@ form.addEventListener('submit',e=>{
     const username=document.querySelector('input[placeholder="Username"]').value
     const password=document.querySelector('input[placeholder="Password"]').value
     // checkUsername(username)
+    console.log(username,password);
     login(username,password).then(res=>{
         console.log(res);
         // 登录成功
-        if (res.status===200) {
-            const token=res.data
-            location.href='/newIndex.html'
-            localStorage.setItem('token',token)
-        }else{
-            console.log('登录失败');
-        }
+        // if (res.status===200) {
+        //     const token=res.data
+        //     location.href='/newIndex.html'
+        //     localStorage.setItem('token',token)
+        // }else{
+        //     console.log('登录失败');
+        // }
     })
-    // console.log(e);
 })
 // const loginBtn = document.querySelector('.login-btn')
 // loginBtn.addEventListener('click',(e)=>{

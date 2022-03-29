@@ -2,12 +2,15 @@
 const ip = "127.0.0.1:8000"//ip与端口号
 export const login = (username, password) => {
     const data={username,password}
-    return fetch(`http://${ip}/login`, {
+    console.log(data);
+    return fetch(`//${ip}/login`, {
         method: 'post',
         headers:{ 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)//序列化
+        body: JSON.stringify(data),//序列化
+        credentials:'include', // 允许请求发送带cookie
     }).then(res =>  res.json())//返回的是一个promise对象
 }
+
 // 封装promise对象发送ajax请求
 const getAllMatters_ajax = () => {
     //当promise对象被创建时会被立即执行，所以在其外侧包裹一个函数是一个可以控制promise对象较好的做法

@@ -9,5 +9,12 @@ const mysqlConn = mysql.createPool({
     database: 'todo'//指定操作的数据库
 })
 
+// edis配置
+const { createClient } = require("redis")
+const redisClient = createClient({
+    legacyMode: true,
+    // 远程服务器redis的url
+    url: 'redis://:123456@121.41.94.106:6379'
+})
 
-module.exports = {mysqlConn}
+module.exports = { mysqlConn, redisClient }
