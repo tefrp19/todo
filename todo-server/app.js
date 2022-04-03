@@ -21,7 +21,23 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const createSession=require('./src/db/redis')
 app.use(createSession())
 
-
+// 校验 session是否有效 
+// app.use((req,res,next)=>{
+//     const url=req.url
+//     console.log('全局中间件',req.url);
+//     if (url!=='/login'&&url!=='/register') {
+//         console.log(req.session);
+//         if (!req.session.userId) {
+//             res.send({
+//                 message: 'session过期，重新登录'
+//             })
+//         } else {
+//             next()
+//         }
+//     }else{
+//         next()
+//     }
+// })
 
 // 配置一个处理错误的全局中间件
 app.use((err, req, res, next) => {

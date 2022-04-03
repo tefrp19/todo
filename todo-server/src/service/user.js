@@ -102,6 +102,7 @@ exports.checkLogin = async (req, res, next) => {
 }
 // 登录
 exports.login = async (req, res) => {
+    console.log('路由中间件');
     const { username } = req.body
     // 通过username查询userId，并将userId存到session方便后续的sql操作
     const getUserIdsql = 'select id from `user` where user_name=?'

@@ -9,7 +9,7 @@ const mysqlConn = mysql.createPool({
     database: 'todo'//指定操作的数据库
 })
 
-// edis配置
+// redis配置
 const { createClient } = require("redis")
 const redisClient = createClient({
     legacyMode: true,

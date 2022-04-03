@@ -10,7 +10,7 @@ module.exports= createSession = () => {
    return session({
         store: new RedisStore({ client: redisClient }),
         cookie:{
-            maxAge:60*1000,
+            maxAge:24*60*60*1000,
         },
         saveUninitialized: false,
         secret: "keyboard cat",
