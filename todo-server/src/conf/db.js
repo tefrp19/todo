@@ -5,7 +5,7 @@ const mysql = require('mysql')
 const mysqlConn = mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
-    password: 'root',
+    password: '123456',
     database: 'todo'//指定操作的数据库
 })
 

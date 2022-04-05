@@ -2,7 +2,7 @@
 const ip = "127.0.0.1:8000"//ip与端口号
 export const login = (username, password) => {
     const data={username,password}
-    console.log(data);
+    // console.log(data);
     return fetch(`//${ip}/login`, {
         method: 'post',
         headers:{ 'Content-Type': 'application/json' },

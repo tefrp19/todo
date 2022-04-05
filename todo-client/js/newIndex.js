@@ -43,3 +43,9 @@ menu.addEventListener('click', function (e) {
     mask.style.display = 'block'
 })
 
+// 取消默认右键菜单功能
+tasks.addEventListener('contextmenu',function (e) {
+    e.preventDefault()
+    console.log(123);
+})
+

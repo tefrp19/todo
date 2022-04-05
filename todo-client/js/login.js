@@ -7,7 +7,7 @@ form.addEventListener('submit',e=>{
     const username=document.querySelector('input[placeholder="Username"]').value
     const password=document.querySelector('input[placeholder="Password"]').value
     // checkUsername(username)
-    console.log(username,password);
+    // console.log(username,password);
     login(username,password).then(res=>{
         console.log(res);
         // 登录成功
