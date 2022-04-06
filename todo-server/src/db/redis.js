@@ -15,6 +15,7 @@ module.exports= createSession = () => {
         saveUninitialized: false,
         secret: "keyboard cat",
         resave: false,
+        unset:'destroy',// 当session被删除时，redis中对应的数据项删除
         name:'todoSessionId',//Set-Cookie中cookie的名字
     })
 }

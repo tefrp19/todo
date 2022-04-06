@@ -102,12 +102,12 @@ exports.checkLogin = async (req, res, next) => {
 }
 // 登录
 exports.login = async (req, res) => {
-    console.log('路由中间件');
     const { username } = req.body
     // 通过username查询userId，并将userId存到session方便后续的sql操作
     const getUserIdsql = 'select id from `user` where user_name=?'
-    const userId = (await exec(getUserIdsql, username))[0].id
-    req.session.userId = userId
+    // 解构赋值
+    const [{ id }] = (await exec(getUserIdsql, username))
+    req.session.userId = id
     res.send(new Model())
 }
 
@@ -120,4 +120,10 @@ exports.checkSession = (req, res, next) => {
     } else {
         next()
     }
+}
+
+// 登出
+exports.logout = async (req, res) => {
+    delete req.session // 当session被删除时，redis中对应的数据项删除
+    res.send(new Model())
 }
