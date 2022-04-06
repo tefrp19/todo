@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 
 // 注意中间件顺序问题
-const { cors, bodyParserJson, bodyParserUrlencoded, verifySession } = require('./src/service/app')
+const { cors, bodyParserJson, bodyParserUrlencoded, verifySession, setTodayTasksFasle } = require('./src/service/app')
 
 // 解决跨域中间件
 app.use(cors)
@@ -19,6 +19,7 @@ app.use(createSession())
 // 校验session是否有效 
 app.use(verifySession)
 
+setTodayTasksFasle()
 // 导入路由（api）
 const api = require('./src/controller/api')
 app.use(api)

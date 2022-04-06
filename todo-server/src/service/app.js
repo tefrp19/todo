@@ -12,6 +12,7 @@ exports.cors = cors(corsOptions)
 
 // 导入 body-parser 中间件解析数据
 const bodyParser = require('body-parser')
+
 exports.bodyParserJson = bodyParser.json() // 将请求体的json数据解析为js对象，添加到req.body属性上
 exports.bodyParserUrlencoded = bodyParser.urlencoded({ extended: true }) // 解析表单提交的数据
 
@@ -29,4 +30,16 @@ exports.verifySession = (req, res, next) => {
     }
 }
 
+// 定时任务，每天0点将所有任务today置为false
+exports.setTodayTasksFasle = () => {
+    const schedule = require('node-schedule');
+    const { exec } = require('../db/mysql')
+
+    schedule.scheduleJob('0 0 0 * * *', async () => {
+        const sql = 'update task set today=0;'
+        await exec(sql)
+        console.log('执行定时任务，时间：' + new Date());
+    });
+
+}
 
