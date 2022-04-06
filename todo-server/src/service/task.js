@@ -1,54 +1,66 @@
 const { exec } = require('../db/mysql') // 导入封装的执行 sql 的异步函数（promise）
 const { Model } = require('../model/model') // 抽象的响应对象
 
-exports.getTasks = (req, res) => {
-    console.log('当前用户的userId为：', req.session.userId);
-
-    res.send({ data: 123 })
-
-    // const userId = req.user.userId
-    // const groupId = req.body.groupId
-    // const sql = 'SELECT id,`name`,note,deadline,`check`,important FROM task WHERE user_id=? and group_id=?'
-    // exec(sql, [userId, groupId]).then(results => {
-    //     // console.log(results);
-    //     res.send(new Model(results))
-    // })
-
+exports.getTasks = async (req, res) => {
+    const { userId } = req.session
+    const { id: groupId } = req.params
+    const sql = 'select id,name,note,deadline,`check`,important,today from task where group_id=? and user_id=?;'
+    console.log(groupId, userId);
+    const tasks = await exec(sql, [groupId, userId])
+    console.log(tasks);
+    res.send(new Model(tasks))
 }
 
-exports.addTask = (req, res) => {
-    const userId = req.user.userId
-    const { groupId, name } = req.body
-    // user_id、group_id
-    const sql = 'INSERT INTO task VALUES(NULL,?,?,?,NULL,NULL,0,0)'
-    exec(sql, [userId, groupId, name]).then(result => {
-        const data = {
-            taskId: result.insertId
-        }
-        res.send(new Model(data))
-    })
+exports.addTask = async (req, res) => {
+    const { userId } = req.session
+    const groupId = parseInt(req.params.id)
+    console.log(groupId);
+    const { name } = req.body
+    const sql = 'INSERT INTO task VALUES(NULL,?,?,?,NULL,NULL,0,0,0)'
+    const { insertId: newTaskId } = await exec(sql, [userId, groupId, name])
+    const data = { newTaskId }
+    res.send(new Model(data))
 }
 
 exports.modifyTask = async (req, res) => {
-    const userId = req.user.userId
-    const { taskId, groupId, name, note, deadline, check, important } = req.body
-    const sql = 'UPDATE task SET group_id=?,name=?,note=?,deadline=?,`check`=?,important=?  WHERE id = ? AND user_id=?'
-    try {
-        await exec(sql, [groupId, name, note, deadline, check, important, taskId, userId])
-        res.send(new Model())
-    } catch (error) {
-        res.send(new Model(400, '请求错误'))
-    }
+    // 实现效果：前端传什么字段后端改什么字段
+    // 1.查所有字段的值
+    const { userId } = req.session
+    const { taskId } = req.params
+    const getTaskInforSql = 'select name,note,deadline,`check`,important,today from task where id=? and user_id=?'
+    // 解构赋值
+    const [taskInfor] = await exec(getTaskInforSql, [taskId, userId])
+
+    // 2.将前端传来的值覆盖为字段新值（合并两个对象）
+    const newTaskInofr = req.body
+    Object.assign(taskInfor, newTaskInofr)
+    const { name, note, deadline, check, important, today } = taskInfor
+    const modifyTaskSql = 'UPDATE task SET name=?,note=?,deadline=?,`check`=?,important=?,today=?  WHERE id = ? AND user_id=?'
+    await exec(modifyTaskSql, [name, note, deadline, check, important, today, taskId, userId])
+    res.send(new Model())
+
 
 }
 
-exports.deleteTask = (req, res) => {
-    const userId = req.user.userId
-    const taskId = req.body.taskId
+exports.deleteTask = async (req, res) => {
+    const { userId } = req.session
+    const { groupId, taskId } = req.params // 其中groupId没用
     const sql = 'DELETE FROM task WHERE user_id=? and id=?'
 
-    exec(sql, [userId, taskId]).then(results => {
-        res.send(new Model())
-    })
+    await exec(sql, [userId, taskId])
+    res.send(new Model())
+}
 
+exports.getImportantTasks = async (req, res) => {
+    const { userId } = req.session
+    const sql = 'select id,group_id,name,note,deadline,`check`,today from task where user_id=?'
+    const importantTasks=await exec(sql,userId)
+    res.send(new Model(importantTasks))
+}
+
+exports.getTodayTasks = async (req, res) => {
+    const { userId } = req.session
+    const sql = 'select id,group_id,name,note,deadline,`check`,important from task where user_id=?'
+    const todayTasks=await exec(sql,userId)
+    res.send(new Model(todayTasks))
 }

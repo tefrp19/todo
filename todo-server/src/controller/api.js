@@ -14,11 +14,16 @@ router.post('/groups',addGroup)
 router.put('/groups/:id',modifyGroup)
 router.delete('/groups/:id',deleteGroup)
 
-const {getTasks,addTask,modifyTask,deleteTask}=require('../service/task')
+const {getTasks,addTask,modifyTask,deleteTask,getImportantTasks,getTodayTasks}=require('../service/task')
 router.get('/groups/:id/tasks', getTasks)
 router.post('/groups/:id/tasks', addTask)
-router.put('/groups/:id/tasks/:id', modifyTask)
-router.delete('/groups/:id/tasks/:id', deleteTask)
+router.put('/groups/:groupId/tasks/:taskId', modifyTask)
+// 如果严格按照restful风格，删除接口应该写成如下格式，但删除只要tasksId就能删除了，何必多传一个groupId呢？
+router.delete('/groups/:groupId/tasks/:taskId', deleteTask)
+
+// 查询所有重要/今天的任务
+router.get('/tasks/important',getImportantTasks)
+router.get('/tasks/today',getTodayTasks)
 
 module.exports = router
 
