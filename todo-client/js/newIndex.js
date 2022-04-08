@@ -49,3 +49,10 @@ tasks.addEventListener('contextmenu',function (e) {
     console.log(123);
 })
 
+const btn=document.querySelector('.submit-task-modification')
+const date=document.querySelector('.modify-deadline')
+console.log(date);
+btn.addEventListener('click',()=>{
+    console.log(123);
+})
+
