@@ -1,13 +1,26 @@
 const { exec } = require('../db/mysql') // 导入封装的执行 sql 的异步函数（promise）
 const { Model } = require('../model/model') // 抽象的响应对象
+const utcToDateStr = require('../utils/utcToDateStr')
+
+/**
+ *  转换时间格式
+ * @param {Array} tasks 待转换日期的tasks数组
+ */
+const transTasksDate = (tasks = []) => {
+    tasks.forEach(task => {
+        if (task.deadline) {
+            // 将2022-04-07T16:00:00.000Z转成2021/4/8再转成2021-4-8
+            task.deadline = utcToDateStr(task.deadline)
+        }
+    })
+}
 
 exports.getTasks = async (req, res) => {
     const { userId } = req.session
     const { id: groupId } = req.params
     const sql = 'select id,name,note,deadline,`check`,important,today from task where group_id=? and user_id=?;'
-    console.log(groupId, userId);
     const tasks = await exec(sql, [groupId, userId])
-    console.log(tasks);
+    transTasksDate(tasks)
     res.send(new Model(tasks))
 }
 
@@ -54,13 +67,15 @@ exports.deleteTask = async (req, res) => {
 exports.getImportantTasks = async (req, res) => {
     const { userId } = req.session
     const sql = 'select id,group_id,name,note,deadline,`check`,today from task where user_id=?'
-    const importantTasks=await exec(sql,userId)
+    const importantTasks = await exec(sql, userId)
+    transTasksDate(importantTasks)
     res.send(new Model(importantTasks))
 }
 
 exports.getTodayTasks = async (req, res) => {
     const { userId } = req.session
     const sql = 'select id,group_id,name,note,deadline,`check`,important from task where user_id=?'
-    const todayTasks=await exec(sql,userId)
+    const todayTasks = await exec(sql, userId)
+    transTasksDate(todayTasks)
     res.send(new Model(todayTasks))
 }
