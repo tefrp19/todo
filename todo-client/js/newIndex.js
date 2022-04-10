@@ -1,8 +1,8 @@
 let tasks = document.querySelector('.tasks')
-tasks.addEventListener('click',function (e) {
+tasks.addEventListener('click', function (e) {
     // e.stopPropagation()
     // console.dir(e.currentTarget);
-    const target=e.target
+    const target = e.target
     // 这里有一个奇怪的bug，不能直接判断e.target.className，需要e.target.matches(selector)来判断
     if (target.matches('.task-name')) {
         console.log(target);
@@ -43,16 +43,33 @@ menu.addEventListener('click', function (e) {
     mask.style.display = 'block'
 })
 
-// 取消默认右键菜单功能
-tasks.addEventListener('contextmenu',function (e) {
-    e.preventDefault()
-    console.log(123);
+
+const btn = document.querySelector('.submit-task-modification')
+const date = document.querySelector('.modify-deadline input[type="date"]')
+console.log(date);
+btn.addEventListener('click', () => {
+    date.value = '2017-06-01'
 })
 
-const btn=document.querySelector('.submit-task-modification')
-const date=document.querySelector('.modify-deadline')
-console.log(date);
-btn.addEventListener('click',()=>{
-    console.log(123);
+// 
+const groupNameDom = document.querySelector('.groupName')
+let oldName
+groupNameDom.addEventListener('focus', function (e) {
+    oldName = e.target.innerText
 })
+groupNameDom.addEventListener('blur', function (e) {
+    if (e.target.innerText !== oldName) {
+        console.log(e.target.innerText);
+    }
+})
+const rename = document.querySelector('.rename')
+rename.addEventListener('click', () => {
+    // 全选
+    const range = document.createRange();
+    range.selectNodeContents(groupNameDom);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+})
+// 如何知道当前操作的是哪个组里的任务？nowGroupId/nowTaskId
+
 

@@ -22,7 +22,7 @@ aside {
 }
 
 aside i {
-    color: #B3E5FC;
+    color: #0062cc;
 }
 
 aside span {
@@ -38,6 +38,8 @@ aside span {
     height: 2.5rem;
     object-fit: cover;
     border-radius: 50%;
+    background-color: #03A9F4;
+    /* opacity: 0.5; */
 }
 
 .username {
@@ -62,8 +64,8 @@ aside span {
 }
 
 .list-item {
-    height: 3rem;
-    line-height: 3rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
     /* border: 1px solid #000; */
     padding-left: 5px;
     margin-top: 5px;
@@ -109,19 +111,131 @@ main {
     display: none;
 }
 
-.tasksToolbar {
+.groupToolbar {
     margin-top: 10px;
     display: flex;
     height: 2rem;
     align-items: center;
+    color: #fff;
+
 }
 
 .menu {
     /* display: none; */
-    color: #fff;
-    /* margin-top: 10px; */
     width: 25px;
     height: 25px;
+}
+
+.groupName {
+    font-size: 24px;
+    max-width: 300px;
+    /*  1.不换行
+        2.文字内容溢出的部分隐藏
+        3.以省略号代替溢出部分
+    */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.toolbarButton {
+    width: 25px;
+    height: 32px;
+    font-size: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.toolbarButton>i {
+    width: 100%;
+    height: 32px;
+    /* 使用line-height给文字垂直居中需要设置固定值，因为line-height的百分比是相对于font-size */
+    line-height: 32px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.toolbarButton>i:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, .3);
+}
+
+.message {
+    position: absolute;
+    /* 实现消失元素的显现过渡效果思路：首先 transition: opacity 1s;然后消失元素设置opacity: 0;并且移除屏幕外，当显现时移回屏幕，再设置opacity: 1; */
+    top: 99999px;
+    left: 40px;
+    width: 100px;
+    height: 25px;
+    font-size: 10px;
+    border-radius: 3px;
+    line-height: 25px;
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.toolbarButton i:hover+.message {
+    /*  */
+    top: 0;
+    opacity: 1;
+}
+
+/* 实现尖角 */
+.message::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 2px;
+    /* 右边距离父元素的宽度百分之百 */
+    right: 100%;
+    display: block;
+    border-right: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+
+}
+
+.toolbarDetail {
+    width: 200px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: rgb(0 0 0 / 13%) 0px 3.2px 7.2px 0px, rgb(0 0 0 / 11%) 0px 0.6px 1.8px 0px;
+    transform: translate(-40%);
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbarDetail button {
+    background-color: #fff;
+    margin: 2px 0;
+    display: flex;
+}
+
+.toolbarDetail button:last-child {
+    color: #e90000;
+}
+
+.toolbarDetail span {
+    height: 38px;
+    line-height: 38px;
+}
+
+.toolbarDetail i {
+    width: 50px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 20px;
+}
+
+.toolbarDetail button:hover {
+    cursor: pointer;
+    background-color: #edebe9;
 }
 
 .tasks {
@@ -179,7 +293,7 @@ main {
 
 .importance:hover {
     cursor: pointer;
-    color: red;
+    color: #0062cc;
 }
 
 
