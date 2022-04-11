@@ -63,7 +63,7 @@ aside span {
     padding-bottom: 3rem;
 }
 
-.list-item {
+.group-item {
     height: 2.5rem;
     line-height: 2.5rem;
     /* border: 1px solid #000; */
@@ -72,18 +72,23 @@ aside span {
     border-radius: 5px;
 }
 
-.list-item:hover {
+.group-item:hover {
     background-color: rgb(250, 250, 250);
     cursor: pointer;
 }
 
-.add-list {
+.addGroup {
     /* position: fixed; 会创建bfc */
     position: fixed;
     bottom: 0;
-    height: 3rem;
     width: 13rem;
-    /* background-color: yellowgreen; */
+    margin-bottom: 3px;
+}
+
+.addGroup input {
+    height: 100%;
+    margin-left: 5px;
+    background-color: transparent;
 }
 
 main {
@@ -99,6 +104,7 @@ main {
     padding: 0 3rem;
     background: url(../../img/bg.jpg) no-repeat center;
     background-size: cover;
+    position: relative;
 }
 
 .mask {
@@ -244,14 +250,13 @@ main {
     overflow-y: auto;
 }
 
-.tasks li {
+.task-item {
     background-color: rgb(238, 239, 243);
     height: 4rem;
     line-height: 4rem;
     border-radius: 5px;
     margin-top: 5px;
     display: flex;
-
 }
 
 .checkBox {
@@ -319,6 +324,11 @@ main {
 .checked .checkBox i {
     position: static;
     opacity: 1;
+}
+
+.addTask {
+    position: absolute;
+    bottom: 5px;
 }
 
 .task-detail {

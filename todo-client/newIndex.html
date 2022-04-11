@@ -28,28 +28,28 @@
                 </div>
 
                 <ul class="functions">
-                    <li class="list-item"><i class="fa fa-sun-o"></i><span>我的一天</span></li>
-                    <li class="list-item"><i class="fa fa-star-o"></i><span>重要</span></li>
+                    <li class="group-item"><i class="fa fa-sun-o"></i><span>我的一天</span></li>
+                    <li class="group-item"><i class="fa fa-star-o"></i><span>重要</span></li>
                 </ul>
                 <ul class="groups">
-                    <li class="list-item"><i class="fa fa-bars"></i> <span>默认分组</span></li>
-                    <li class="list-item"><i class="fa fa-bars"></i> <span>分组1</span></li>
-                    <li class="list-item"><i class="fa fa-bars"></i> <span>分组2</span></li>
-                    <li class="list-item"><i class="fa fa-bars"></i> <span>分组end</span></li>
-                    <!-- <li class="list-item">分组3</li>
-                <li class="list-item">分组3</li>
-                <li class="list-item">分组3</li>
-                <li class="list-item">分组3</li>
-                <li class="list-item">分组3</li>
-                <li class="list-item">分组4</li>
-                <li class="list-item">分组4</li>
-                <li class="list-item">分组4</li>
-                <li class="list-item">分组4</li>
-                <li class="list-item">分组4</li> -->
+                    <li class="group-item"><i class="fa fa-bars"></i> <span>默认分组</span></li>
+                    <li class="group-item"><i class="fa fa-bars"></i> <span>分组1</span></li>
+                    <li class="group-item"><i class="fa fa-bars"></i> <span>分组2</span></li>
+                    <li class="group-item"><i class="fa fa-bars"></i> <span>分组end</span></li>
+                    <!-- <li class="group-item">分组3</li>
+                <li class="group-item">分组3</li>
+                <li class="group-item">分组3</li>
+                <li class="group-item">分组3</li>
+                <li class="group-item">分组3</li>
+                <li class="group-item">分组4</li>
+                <li class="group-item">分组4</li>
+                <li class="group-item">分组4</li>
+                <li class="group-item">分组4</li>
+                <li class="group-item">分组4</li> -->
                 </ul>
-                <div class="add-list list-item">
+                <div class="addGroup group-item">
                     <i class="fa fa-plus"></i>
-                    <span>添加分组</span>
+                    <input placeholder="新建分组" value="" autocomplete="off"></input>
                 </div>
             </div>
         </aside>
@@ -84,7 +84,7 @@
                 </div>
 
                 <ul class="tasks">
-                    <li>
+                    <li class="task-item">
                         <div class="checkBox">
                             <i class="fa fa-circle-thin"></i>
                             <i class="fa fa-check-circle-o"></i>
@@ -92,14 +92,14 @@
                         <span class="task-name">事项1</span>
                         <div class="importance"><i class="fa fa-star-o"></i></div>
                     </li>
-                    <li>
+                    <li class="task-item">
                         <div class="checkBox">
                             <i class="fa fa-circle-thin"></i>
                             <i class="fa fa-check-circle-o"></i></div>
                         <span class="task-name">事项2</span>
                         <div class="importance"><i class="fa fa-star-o"></i></div>
-                    </li>
-                    <li>
+                    </li class="task-item">
+                    <li class="task-item">
                         <div class="checkBox">
                             <i class="fa fa-circle-thin"></i>
                             <i class="fa fa-check-circle-o"></i>
@@ -112,14 +112,14 @@
                 </ul>
                 <div class="splitLine">已完成 2</div>
                 <ul class="tasks checked">
-                    <li>
+                    <li class="task-item">
                         <div class="checkBox">
                             <i class="fa fa-check-circle"></i>
                         </div>
                         <span class="task-name">事项1</span>
                         <div class="importance" style="color: #0062cc;"><i class="fa fa-star"></i></div>
                     </li>
-                    <li>
+                    <li class="task-item">
                         <div class="checkBox">
                             <i class="fa fa-check-circle"></i>
                         </div>
@@ -127,6 +127,10 @@
                         <div class="importance"><i class="fa fa-star-o"></i></div>
                     </li>
                 </ul>
+                <div class="addTask task-item">
+                    <i class="fa fa-plus"></i>
+                    <input placeholder="添加任务" value="" autocomplete="off"></input>
+                </div>
             </div>
             <div class="task-detail rightColumn-exited">
                 <div class="warpper">
@@ -150,7 +154,9 @@
             </div>
         </main>
     </div>
-    <script src="js/newIndex.js"></script>
+    <script src="js/api/common.js" type="module"></script>
+    <script src="js/api/user.js" type="module"></script>
+    <script src="js/newIndex.js" type="module"></script>
 </body>
 
 </html>

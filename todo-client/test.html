@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+
+<body>
+    <button id="loginBtn">登录</button>
+    <button id="logoutBtn">登出</button>
+
+    <button id="btn1">查询所有分组</button>
+    <button id="btn2">添加分组</button>
+    <button id="btn3">更新分组</button>
+    <button id="btn4">删除分组</button>
+
+    <button id="btn5">查询任务</button>
+    <button id="btn6">添加任务</button>
+    <button id="btn7">更新任务</button>
+    <button id="btn8">删除任务</button>
+
+    <button id="btn9">查询今天任务</button>
+    <button id="btn10">查询重要任务</button>
+    <script src="js/api/common.js" type="module"></script>
+    <script src="js/api/user.js" type="module"></script>
+    <script type="module">
+        import {login} from './js/api/user.js'
+        loginBtn.onclick=()=>{
+    login()
+}
+        btn1.onclick=()=>{
+            console.log(123);
+        }
+    </script>
+</body>
+
+</html>

@@ -46,7 +46,7 @@ menu.addEventListener('click', function (e) {
 
 const btn = document.querySelector('.submit-task-modification')
 const date = document.querySelector('.modify-deadline input[type="date"]')
-console.log(date);
+// console.log(date);
 btn.addEventListener('click', () => {
     date.value = '2017-06-01'
 })
@@ -72,4 +72,6 @@ rename.addEventListener('click', () => {
 })
 // 如何知道当前操作的是哪个组里的任务？nowGroupId/nowTaskId
 
+import {login} from './api/user.js'
+login()
 
