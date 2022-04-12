@@ -1,8 +1,17 @@
 const { Model } = require('../model/model')
 const { exec } = require('../db/mysql')
+const { checkParams } = require('./app')
 // 校验注册
 exports.checkRegister = async (req, res, next) => {
-    const { username, password } = req.body
+    const params=req.body
+    // 检验前端传的字段是否有效
+    if (!checkParams(params,['username','password'])) {
+        console.log('传入参数有误');
+        next('paramsError')
+        return
+    }
+    const { username, password } =params
+   
     // console.log(username, password);
     // 1. 检查用户名是否符合规则：只能由字母、数字和下划线组成，且必须由字母或数字开头，长度最少1位最多10位
     // const usernameReg=/^[a-z|A-Z]([a-z|A-Z|_|0-9]){0,9}$/
@@ -60,43 +69,38 @@ exports.register = async (req, res) => {
 }
 // 校验登录 
 exports.checkLogin = async (req, res, next) => {
-    let { username, password } = req.body
+    const params=req.body
+    // 检验前端传的字段是否有效
+    if (!checkParams(params,['username','password'])) {
+        next('paramsError')
+        return
+    }
+    
+    let { username, password } = params
 
-    // 定义一个映射错误的map
-    const errInfor = new Map([
-        ['usernameNotExist', new Model(403, '用户名不存在，请重试！')],
-        ['passwordWrong', new Model(403, '用户名或密码不对，请重试！')],
-    ])
+    // 1. 检查用户名是否存在
+    const checkUsernameSql = 'SELECT COUNT(*) FROM user WHERE user_name=?;'
+    const userNum = (await exec(checkUsernameSql, username))[0]['COUNT(*)']
+    if (userNum === 0) {
+        res.send(new Model(403, '用户名不存在，请重试！'))
+        return
+    }
 
-    try {
-        // 1. 检查用户名是否存在
-        const checkUsernameSql = 'SELECT COUNT(*) FROM user WHERE user_name=?;'
-        const userNum = (await exec(checkUsernameSql, username))[0]['COUNT(*)']
-        if (userNum === 0) {
-            throw new Error('usernameNotExist')
-        }
-
-        // 2. 检查密码是否正确
-        // 2.1查出salt
-        const getSaltSql = 'SELECT salt FROM user WHERE user_name=?;'
-        const salt = (await exec(getSaltSql, username))[0].salt
-        // 2.2根据密码和 salt 检查密码是否正确
-        const crypto = require('../utils/crypto')
-        const cryptedPassword = crypto(password + salt)
-        const checkPasswordSql = 'SELECT id FROM user WHERE user_name=? AND password=?'
-        const checkPasswordResult = await exec(checkPasswordSql, [username, cryptedPassword])
-        if (checkPasswordResult.length === 1) { // 登录校验成功，执行下一个中间件
-            next()
-        } else {
-            throw new Error('passwordWrong')
-        }
-
-
-    } catch (error) {
-        // 同一错误处理
-        const response = errInfor.get(error.message)
-        console.log(response);
-        res.send(response)
+    // 2. 检查密码是否正确
+    // 2.1查出salt
+    const getSaltSql = 'SELECT salt FROM user WHERE user_name=?;'
+    const salt = (await exec(getSaltSql, username))[0].salt
+    // 2.2根据密码和 salt 检查密码是否正确
+    const crypto = require('../utils/crypto')
+    const cryptedPassword = crypto(password + salt)
+    const checkPasswordSql = 'SELECT id FROM user WHERE user_name=? AND password=?'
+    const checkPasswordResult = await exec(checkPasswordSql, [username, cryptedPassword])
+    if (checkPasswordResult.length === 1) { // 登录校验成功，执行下一个中间件
+        next()
+        return
+    }
+    else {
+        res.send(new Model(403, '用户名或密码不对，请重试！'))
     }
 
 }
@@ -114,9 +118,7 @@ exports.login = async (req, res) => {
 // 检查session是否过期，即检查session中是否有userId，没有则代表对应cookie不存在或已超过时间
 exports.checkSession = (req, res, next) => {
     if (!req.session.userId) {
-        res.send({
-            message: 'session过期，重新登录'
-        })
+        res.send(new Model(400,'session无效，请登录'))
     } else {
         next()
     }

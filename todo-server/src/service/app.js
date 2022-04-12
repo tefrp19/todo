@@ -16,11 +16,28 @@ const bodyParser = require('body-parser')
 exports.bodyParserJson = bodyParser.json() // 将请求体的json数据解析为js对象，添加到req.body属性上
 exports.bodyParserUrlencoded = bodyParser.urlencoded({ extended: true }) // 解析表单提交的数据
 
+// 检验前端传来是否为有效的字段（需要的字段是否有值）
+/**
+ * 
+ * @param {obj} params 
+ * @param {Array} needCheckParams 
+ * @returns 
+ */
+exports.checkParams=(params,needCheckParams)=>{
+    for (const param of needCheckParams) {
+        if (!params[param]) {
+            console.log('必须的参数没有传');
+            return false
+        }
+    }
+    return true
+}
+
 // 校验session是否有效的自定义中间件
 exports.verifySession = (req, res, next) => {
     // console.log('校验session是否有效的自定义中间件');
     const url = req.url
-    if (url !== '/login' && url !== '/register' && url !== '/logout') { // 大部分操作需要检验session
+    if (url !== '/login' && url !== '/register') { // 大部分操作需要检验session
         const { checkSession } = require('../service/user')
         checkSession(req, res, next)
     }
@@ -43,3 +60,6 @@ exports.setTodayTasksFasle = () => {
 
 }
 
+exports.handleException=(req,res,next)=>{
+
+}

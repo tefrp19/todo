@@ -28,7 +28,13 @@ exports.addTask = async (req, res) => {
     const { userId } = req.session
     const groupId = parseInt(req.params.id)
     console.log(groupId);
-    const { name } = req.body
+    const params = req.body
+    // 检验前端传的字段是否有效
+    if (!checkParams(params, ['name'])) {
+        next('paramsError')
+        return
+    }
+    const { name } = params
     const sql = 'INSERT INTO task VALUES(NULL,?,?,?,NULL,NULL,0,0,0)'
     const { insertId: newTaskId } = await exec(sql, [userId, groupId, name])
     const data = { newTaskId }
@@ -51,7 +57,6 @@ exports.modifyTask = async (req, res) => {
     const modifyTaskSql = 'UPDATE task SET name=?,note=?,deadline=?,`check`=?,important=?,today=?  WHERE id = ? AND user_id=?'
     await exec(modifyTaskSql, [name, note, deadline, check, important, today, taskId, userId])
     res.send(new Model())
-
 
 }
 
