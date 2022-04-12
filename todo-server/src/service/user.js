@@ -118,7 +118,7 @@ exports.login = async (req, res) => {
 // 检查session是否过期，即检查session中是否有userId，没有则代表对应cookie不存在或已超过时间
 exports.checkSession = (req, res, next) => {
     if (!req.session.userId) {
-        res.send(new Model(400,'session无效，请登录'))
+        res.send(new Model(401,'session无效，请登录'))
     } else {
         next()
     }

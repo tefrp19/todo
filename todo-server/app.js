@@ -25,15 +25,14 @@ const api = require('./src/controller/api')
 const { Model } = require('./src/model/model')
 app.use(api)
 app.use((err, req, res, next) => {
-    console.log('全局捕获错误中间件');
-    console.log(err);
     switch (err) {
         case 'paramsError':
-            res.send(new Model(400,'传入参数有误'))
+            res.send(new Model(400, '传入参数有误'))
             break;
-    
+
         default:
-            res.send(new Model(500,'服务端出错'))
+            console.log('服务端出错');
+            res.send(new Model(500, '服务端出错'))
             break;
     }
 })

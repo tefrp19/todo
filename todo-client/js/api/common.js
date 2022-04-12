@@ -1,6 +1,6 @@
 const ip = '127.0.0.1:8000'
 
-const fetchData = (path, method, data) => {
+const fetchData = (path, method, params) => {
     return fetch(`//${ip}${path}`, {
         method,
         // 默认fetch请求不带上cookie
@@ -9,7 +9,7 @@ const fetchData = (path, method, data) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: data?JSON.stringify(data):null,
+        body: params?JSON.stringify(params):null,
     }).then(res => res.json())
 };
 export default fetchData 

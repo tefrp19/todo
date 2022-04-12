@@ -26,9 +26,9 @@ exports.bodyParserUrlencoded = bodyParser.urlencoded({ extended: true }) // 解�
 exports.checkParams=(params,needCheckParams)=>{
     for (const param of needCheckParams) {
         if (!params[param]) {
-            console.log('必须的参数没有传');
             return false
         }
+        
     }
     return true
 }

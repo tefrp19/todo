@@ -1,6 +1,7 @@
 const { exec } = require('../db/mysql') // 导入封装的执行 sql 的异步函数（promise）
 const { Model } = require('../model/model') // 抽象的响应对象
 const utcToDateStr = require('../utils/utcToDateStr')
+const { checkParams } = require('./app')
 
 /**
  *  转换时间格式
@@ -27,7 +28,6 @@ exports.getTasks = async (req, res) => {
 exports.addTask = async (req, res) => {
     const { userId } = req.session
     const groupId = parseInt(req.params.id)
-    console.log(groupId);
     const params = req.body
     // 检验前端传的字段是否有效
     if (!checkParams(params, ['name'])) {
@@ -52,6 +52,12 @@ exports.modifyTask = async (req, res) => {
 
     // 2.将前端传来的值覆盖为字段新值（合并两个对象）
     const newTaskInofr = req.body
+    // 传来日期字段需要判断格式，eg：'xxxx-xx-xx'
+    const reg=/^\d{4}-\d{2}-\d{2}$/
+    if (!reg.test(newTaskInofr.deadline)) {
+        res.send(new Model(400,'日期格式错误'))
+        return 
+    }
     Object.assign(taskInfor, newTaskInofr)
     const { name, note, deadline, check, important, today } = taskInfor
     const modifyTaskSql = 'UPDATE task SET name=?,note=?,deadline=?,`check`=?,important=?,today=?  WHERE id = ? AND user_id=?'
@@ -71,7 +77,7 @@ exports.deleteTask = async (req, res) => {
 
 exports.getImportantTasks = async (req, res) => {
     const { userId } = req.session
-    const sql = 'select id,group_id,name,note,deadline,`check`,today from task where user_id=?'
+    const sql = 'select id,group_id,name,note,deadline,`check`,today from task where user_id=? and important=1'
     const importantTasks = await exec(sql, userId)
     transTasksDate(importantTasks)
     res.send(new Model(importantTasks))
@@ -79,7 +85,7 @@ exports.getImportantTasks = async (req, res) => {
 
 exports.getTodayTasks = async (req, res) => {
     const { userId } = req.session
-    const sql = 'select id,group_id,name,note,deadline,`check`,important from task where user_id=?'
+    const sql = 'select id,group_id,name,note,deadline,`check`,important from task where user_id=? and today=1'
     const todayTasks = await exec(sql, userId)
     transTasksDate(todayTasks)
     res.send(new Model(todayTasks))

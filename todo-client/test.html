@@ -22,17 +22,84 @@
     <button id="btn7">更新任务</button>
     <button id="btn8">删除任务</button>
 
-    <button id="btn9">查询今天任务</button>
-    <button id="btn10">查询重要任务</button>
+    <button id="btn9">查询重要任务</button>
+    <button id="btn10">查询今天任务</button>
     <script src="js/api/common.js" type="module"></script>
     <script src="js/api/user.js" type="module"></script>
+    <script src="js/api/group.js" type="module"></script>
+    <script src="js/api/task.js" type="module"></script>
     <script type="module">
         import {login} from './js/api/user.js'
         loginBtn.onclick=()=>{
-    login()
-}
+        }
+import {getGroups,addGroup,modifyGroup,deleteGroup} from './js/api/group.js'
+
         btn1.onclick=()=>{
-            console.log(123);
+            getGroups().then(res=>{
+                console.log(res);
+            })
+        }
+        btn2.onclick=()=>{
+            addGroup({
+                name:'test123'
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+        btn3.onclick=()=>{
+            modifyGroup({
+                groupId:6,
+                name:'分组2'
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+        btn4.onclick=()=>{
+            deleteGroup({
+                groupId:8,
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+        import {getTasks,addTask,modifyTask,deleteTask,getImportantTasks,getTodayTasks} from './js/api/task.js'
+
+        btn5.onclick=()=>{
+            getTasks(3).then(res=>{
+                console.log(res);
+            })
+        }
+        btn6.onclick=()=>{
+            addTask({
+                groupId:3,
+                name:'abc'
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+        btn7.onclick=()=>{
+            modifyTask({
+                taskId:11,
+                name:'def',
+                deadline:'2018-11-12',
+                check:1,
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+        btn8.onclick=()=>{
+            deleteTask(12).then(res=>{
+                console.log(res);
+            })
+        }
+        btn9.onclick=()=>{
+            getImportantTasks().then(res=>{
+                console.log(res);
+            })
+        }
+        btn10.onclick=()=>{
+            getTodayTasks().then(res=>{
+                console.log(res);
+            })
         }
     </script>
 </body>
