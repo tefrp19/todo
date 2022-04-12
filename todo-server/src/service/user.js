@@ -1,17 +1,17 @@
-const { Model } = require('../model/model')
-const { exec } = require('../db/mysql')
-const { checkParams } = require('./app')
+const {Model} = require('../model/model')
+const {exec} = require('../db/mysql')
+const {checkParams} = require('./app')
 // 校验注册
 exports.checkRegister = async (req, res, next) => {
-    const params=req.body
+    const params = req.body
     // 检验前端传的字段是否有效
-    if (!checkParams(params,['username','password'])) {
+    if (!checkParams(params, ['username', 'password'])) {
         console.log('传入参数有误');
         next('paramsError')
         return
     }
-    const { username, password } =params
-   
+    const {username, password} = params
+
     // console.log(username, password);
     // 1. 检查用户名是否符合规则：只能由字母、数字和下划线组成，且必须由字母或数字开头，长度最少1位最多10位
     // const usernameReg=/^[a-z|A-Z]([a-z|A-Z|_|0-9]){0,9}$/
@@ -45,7 +45,7 @@ exports.checkRegister = async (req, res, next) => {
 // 注册
 exports.register = async (req, res) => {
     try {
-        const { username, password } = req.body
+        const {username, password} = req.body
 
         const crypto = require('../utils/crypto')
         // 生成一个随机密码盐
@@ -54,13 +54,13 @@ exports.register = async (req, res) => {
         const cryptedPassword = crypto(password + salt)
         const sql = 'INSERT INTO user VALUES(null,?,?,?)'
         // 从 exec 返回的结果中提取 insertId 的值，并将其重命名为 userId
-        const { insertId: userId } = await exec(sql, [username, cryptedPassword, salt])
+        const {insertId: userId} = await exec(sql, [username, cryptedPassword, salt])
 
         // 注册成功后为该用户添加一个默认分组
         const addGroupSql = 'INSERT INTO `group` VALUES(NULL,\'默认分组\',?);'
         await exec(addGroupSql, userId)
 
-        res.send(new Model({ userId }))
+        res.send(new Model({userId}))
     } catch (error) {
         res.send(new Model('500', '注册失败'))
     }
@@ -69,14 +69,14 @@ exports.register = async (req, res) => {
 }
 // 校验登录 
 exports.checkLogin = async (req, res, next) => {
-    const params=req.body
+    const params = req.body
     // 检验前端传的字段是否有效
-    if (!checkParams(params,['username','password'])) {
+    if (!checkParams(params, ['username', 'password'])) {
         next('paramsError')
         return
     }
-    
-    let { username, password } = params
+
+    let {username, password} = params
 
     // 1. 检查用户名是否存在
     const checkUsernameSql = 'SELECT COUNT(*) FROM user WHERE user_name=?;'
@@ -98,19 +98,18 @@ exports.checkLogin = async (req, res, next) => {
     if (checkPasswordResult.length === 1) { // 登录校验成功，执行下一个中间件
         next()
         return
-    }
-    else {
+    } else {
         res.send(new Model(403, '用户名或密码不对，请重试！'))
     }
 
 }
 // 登录
 exports.login = async (req, res) => {
-    const { username } = req.body
+    const {username} = req.body
     // 通过username查询userId，并将userId存到session方便后续的sql操作
     const getUserIdsql = 'select id from `user` where user_name=?'
     // 解构赋值
-    const [{ id }] = (await exec(getUserIdsql, username))
+    const [{id}] = (await exec(getUserIdsql, username))
     req.session.userId = id
     res.send(new Model())
 }
@@ -118,7 +117,7 @@ exports.login = async (req, res) => {
 // 检查session是否过期，即检查session中是否有userId，没有则代表对应cookie不存在或已超过时间
 exports.checkSession = (req, res, next) => {
     if (!req.session.userId) {
-        res.send(new Model(401,'session无效，请登录'))
+        res.send(new Model(401, 'session无效，请登录'))
     } else {
         next()
     }

@@ -13,7 +13,7 @@ form.addEventListener('submit',e=>{
         // 登录成功
         // if (res.status===200) {
         //     const token=res.data
-        //     location.href='/newIndex.html'
+        //     location.href='/index.html'
         //     localStorage.setItem('token',token)
         // }else{
         //     console.log('登录失败');

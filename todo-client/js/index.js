@@ -1,87 +1,77 @@
-import {getAllMatters, addMatter, deleteMatter} from './request.js'
-const token=localStorage.getItem('token')
-
-function setAllMatters() {
-
-    //网络请求
-    getAllMatters(token).then(res => {
-
-        addElementNodes(res.data)
-        bindEventForDel()
-        // console.log("setAllMatters");
-    })
-
-    // DOM操作
-    const addElementNodes = (data) => {
-        console.log(data);
-        // 节点有多种类型，最常用的是元素节点和文本节点
-        // 1.选中tbody元素节点
-        let tbody = document.getElementById('todoList').getElementsByTagName('tbody')[0]
-        // 2.删除tbody节点中所有元素节点
-        while (tbody.firstElementChild) { //
-            tbody.removeChild(tbody.firstElementChild);
-        }
-        // 3.遍历data添加数据
-        for (let i = 0; i < data.length; i++) {
-            const tr = document.createElement('tr')
-            const keys = Object.keys(data[i]);
-
-            [keys[1], keys[2]] = [keys[2], keys[1]] //利用es6解构赋值交换两数要小心这条语句被解析成其他形式！！！
-            for (const key of keys) {
-                let td = document.createElement('td')
-                const str = data[i][key]
-                if (str !== null) {
-                    td.innerHTML = str
-                }
-                tr.append(td)
-            }
-            const td = document.createElement('td')
-            td.innerHTML = "<button>删除</button>"
-            tr.appendChild(td);
-            tbody.append(tr)
-
-        }
-
+let tasks = document.querySelector('.tasks')
+tasks.addEventListener('click', function (e) {
+    // e.stopPropagation()
+    // console.dir(e.currentTarget);
+    const target = e.target
+    // 这里有一个奇怪的bug，不能直接判断e.target.className，需要e.target.matches(selector)来判断
+    if (target.matches('.task-name')) {
+        console.log(target);
+        showTaskDetail()
     }
+})
 
-    // 为删除按钮绑定事件
-    const bindEventForDel = () => {
-        const trs = document.getElementById('todoList').getElementsByTagName('tbody')[0].getElementsByTagName('tr')
+const mask = document.querySelector('.mask')
+const taskDetail = document.querySelector('.task-detail')
 
-        for (let i = 0; i < trs.length; i++) {
-            trs[i].lastElementChild.firstElementChild.onclick = function () {//这里应该使用传统函数不应该使用箭头函数，会丢失this
-                const tr = this.parentElement.parentElement
-                const id = tr.firstElementChild.innerHTML
-                deleteMatter(id).then(
-                    tr.remove()//删除对应行
-                )
+mask.addEventListener('click', function (e) {
+    mask.style.display = 'none'
+    // 右侧栏不展示
+    taskDetail.classList.add('rightColumn-exited')
+    taskDetail.classList.remove('rightColumn-entered')
+    // 左侧栏消失
+    const aside = document.querySelector('aside')
+    aside.style.width = '0'
+})
 
-            }
+function showTaskDetail(e) {
+    console.log();
+    const windowInnerWidth = window.innerWidth
+    if (windowInnerWidth <= 1200) { // 窗口是小屏或中屏才展示遮罩层
 
-        }
-
+        mask.style.display = 'block'
+        // 右侧栏展示
+        taskDetail.classList.add('rightColumn-entered')
+        taskDetail.classList.remove('rightColumn-exited')
     }
 }
 
-setAllMatters()
+// 展示左侧边栏
+const menu = document.querySelector('.menu')
+menu.addEventListener('click', function (e) {
+    const aside = document.querySelector('aside')
+    aside.style.width = '15rem'
+    mask.style.display = 'block'
+})
 
-const form = document.getElementById('addMatter').firstElementChild
-const btn = form.getElementsByTagName('button')[0]
-btn.onclick = function () {
-    const name = document.getElementById('matterName').value
-    const remarks = document.getElementById('remarks').value
 
-    const deadline = document.getElementById('deadline').value.replace('T', ' ')
+const btn = document.querySelector('.submit-task-modification')
+const date = document.querySelector('.modify-deadline input[type="date"]')
+// console.log(date);
+btn.addEventListener('click', () => {
+    date.value = '2017-06-01'
+})
 
-    const data = {
-        name: name,
-        remarks: remarks,
-        deadline: deadline,
+// 
+const groupNameDom = document.querySelector('.groupName')
+let oldName
+groupNameDom.addEventListener('focus', function (e) {
+    oldName = e.target.innerText
+})
+groupNameDom.addEventListener('blur', function (e) {
+    if (e.target.innerText !== oldName) {
+        console.log(e.target.innerText);
     }
-    addMatter(data).then(() => {
-        setAllMatters();
+})
+const rename = document.querySelector('.rename')
+rename.addEventListener('click', () => {
+    // 全选
+    const range = document.createRange();
+    range.selectNodeContents(groupNameDom);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+})
+// 如何知道当前操作的是哪个组里的任务？nowGroupId/nowTaskId
 
-    })
-
-}
+import {login} from './api/user.js'
+login().then(res=>console.log(res))
 

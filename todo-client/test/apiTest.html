@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>apiTest</title>
 </head>
 
 <body>
@@ -24,15 +24,19 @@
 
     <button id="btn9">查询重要任务</button>
     <button id="btn10">查询今天任务</button>
-    <script src="js/api/common.js" type="module"></script>
-    <script src="js/api/user.js" type="module"></script>
-    <script src="js/api/group.js" type="module"></script>
-    <script src="js/api/task.js" type="module"></script>
+    <script src="../js/api/common.js" type="module"></script>
+    <script src="../js/api/user.js" type="module"></script>
+    <script src="../js/api/group.js" type="module"></script>
+    <script src="../js/api/task.js" type="module"></script>
     <script type="module">
-        import {login} from './js/api/user.js'
+        import {login} from '../js/api/user.js'
         loginBtn.onclick=()=>{
+            login({
+                username:'frp',
+                password:'Maroon5119',
+            })
         }
-import {getGroups,addGroup,modifyGroup,deleteGroup} from './js/api/group.js'
+import {getGroups,addGroup,modifyGroup,deleteGroup} from '../js/api/group.js'
 
         btn1.onclick=()=>{
             getGroups().then(res=>{
@@ -61,7 +65,7 @@ import {getGroups,addGroup,modifyGroup,deleteGroup} from './js/api/group.js'
                 console.log(res);
             })
         }
-        import {getTasks,addTask,modifyTask,deleteTask,getImportantTasks,getTodayTasks} from './js/api/task.js'
+        import {getTasks,addTask,modifyTask,deleteTask,getImportantTasks,getTodayTasks} from '../js/api/task.js'
 
         btn5.onclick=()=>{
             getTasks(3).then(res=>{
