@@ -4,8 +4,6 @@
     position: relative;
 }
 
-
-
 aside {
     background-color: rgb(243, 242, 241);
     width: 15rem;
@@ -152,7 +150,7 @@ main {
     position: relative;
 }
 
-.toolbarButton>i {
+.toolbarButton > i {
     width: 100%;
     height: 32px;
     /* 使用line-height给文字垂直居中需要设置固定值，因为line-height的百分比是相对于font-size */
@@ -161,7 +159,7 @@ main {
     text-align: center;
 }
 
-.toolbarButton>i:hover {
+.toolbarButton > i:hover {
     cursor: pointer;
     background-color: rgb(255, 255, 255, .3);
 }
@@ -183,7 +181,7 @@ main {
     transition: opacity 0.5s;
 }
 
-.toolbarButton i:hover+.message {
+.toolbarButton i:hover + .message {
     /*  */
     top: 0;
     opacity: 1;
@@ -328,7 +326,19 @@ main {
 
 .addTask {
     position: absolute;
+    width: 90%;
     bottom: 5px;
+}
+
+.addTask i {
+    height: 4rem;
+    line-height: 4rem;
+}
+
+.addTask input {
+    width: 100%;
+    background-color: transparent;
+    font-size: 15px;
 }
 
 .task-detail {
@@ -340,17 +350,17 @@ main {
     display: flex;
     flex-direction: column;
     transition: width .3s ease;
-
+    position: relative;
 }
 
-.task-detail .warpper>div {
+.task-detail-item {
     border: 1px solid #616161;
     border-radius: 3px;
     margin: 10px 0;
     background-color: rgb(253, 253, 253);
 }
 
-.task-detail .warpper>div:hover {
+.task-detail-item:hover {
     background-color: #F3F3F3;
 }
 
@@ -377,10 +387,35 @@ main {
     background-color: transparent;
 }
 
+.add-to-toay {
+    background-color: #fff;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+}
+
+.add-to-toay i {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin: 0 5px;
+    color: #0062cc;
+}
+
+.add-to-toay:hover {
+    cursor: pointer;
+}
+
 .modify-note {
     height: 100px;
     overflow: auto;
     padding: 10px;
+}
+
+.modify-note:empty::before {
+    content: attr(placeholder);
+    opacity: 0.5;
 }
 
 .submit-task-modification {
@@ -388,9 +423,7 @@ main {
     margin: 0 auto;
     height: 50px;
     width: 150px;
-    border: none;
     background-color: #007bff;
-    border-color: #007bff;
     text-align: center;
     transition: background-color .3s;
     border-radius: 5px;
@@ -401,4 +434,24 @@ main {
     cursor: pointer;
     background-color: #0069d9;
     border-color: #0062cc;
+}
+
+.delete-task {
+    display: block;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 150px;
+    color: red;
+    border: none;
+}
+
+.delete-task:hover {
+    cursor: pointer;
+}
+
+.delete-task i {
+    margin: 0 5px;
+    font-size: 18px;
 }

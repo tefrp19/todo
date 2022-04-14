@@ -14,150 +14,155 @@
 </head>
 
 <body>
-    <div class="root">
-        <aside>
-            <div class="warpper">
-                <div class="user">
-                    <div class="avatar">
-                        <!-- <img
-                            src="https://pic3.zhimg.com/v2-2a47c0cfc3daaa373926bff3af7525ef_xl.jpg?source=32738c0c"
-                            alt=""> -->
-                        <img src="./img/头像.png" alt="" srcset="">
-                    </div>
-                    <div class="username">范润平</div>
+<div class="root">
+    <aside>
+        <div class="warpper">
+            <div class="user">
+                <div class="avatar">
+                    <!-- <img
+                        src="https://pic3.zhimg.com/v2-2a47c0cfc3daaa373926bff3af7525ef_xl.jpg?source=32738c0c"
+                        alt=""> -->
+                    <img src="./img/头像.png" alt="" srcset="">
                 </div>
-
-                <ul class="functions">
-                    <li class="group-item"><i class="fa fa-sun-o"></i><span>我的一天</span></li>
-                    <li class="group-item"><i class="fa fa-star-o"></i><span>重要</span></li>
-                </ul>
-                <ul class="groups">
-                    <li class="group-item"><i class="fa fa-bars"></i> <span>默认分组</span></li>
-                    <li class="group-item"><i class="fa fa-bars"></i> <span>分组1</span></li>
-                    <li class="group-item"><i class="fa fa-bars"></i> <span>分组2</span></li>
-                    <li class="group-item"><i class="fa fa-bars"></i> <span>分组end</span></li>
-                    <!-- <li class="group-item">分组3</li>
-                <li class="group-item">分组3</li>
-                <li class="group-item">分组3</li>
-                <li class="group-item">分组3</li>
-                <li class="group-item">分组3</li>
-                <li class="group-item">分组4</li>
-                <li class="group-item">分组4</li>
-                <li class="group-item">分组4</li>
-                <li class="group-item">分组4</li>
-                <li class="group-item">分组4</li> -->
-                </ul>
-                <div class="addGroup group-item">
-                    <i class="fa fa-plus"></i>
-                    <input placeholder="新建分组" value="" autocomplete="off"></input>
-                </div>
+                <div class="username">范润平</div>
             </div>
-        </aside>
-        <main>
 
-            <div class="contanier">
-                <div class="mask"></div>
+            <ul class="functions">
+                <li class="group-item"><i class="fa fa-sun-o"></i><span>我的一天</span></li>
+                <li class="group-item"><i class="fa fa-star-o"></i><span>重要</span></li>
+            </ul>
+            <ul class="groups">
+                <li class="group-item"><i class="fa fa-bars"></i> <span>默认分组</span></li>
+                <li class="group-item"><i class="fa fa-bars"></i> <span>分组1</span></li>
+                <li class="group-item"><i class="fa fa-bars"></i> <span>分组2</span></li>
+                <li class="group-item"><i class="fa fa-bars"></i> <span>分组end</span></li>
+                <!-- <li class="group-item">分组3</li>
+            <li class="group-item">分组3</li>
+            <li class="group-item">分组3</li>
+            <li class="group-item">分组3</li>
+            <li class="group-item">分组3</li>
+            <li class="group-item">分组4</li>
+            <li class="group-item">分组4</li>
+            <li class="group-item">分组4</li>
+            <li class="group-item">分组4</li>
+            <li class="group-item">分组4</li> -->
+            </ul>
+            <div class="addGroup group-item">
+                <i class="fa fa-plus"></i>
+                <input placeholder="新建分组" value="" autocomplete="off"/>
+            </div>
+        </div>
+    </aside>
+    <main>
 
-                <div class="groupToolbar">
-                    <div class="menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
-                    <div class="groupName" contenteditable="true">默认分组</div>
-                    <div class="toolbarButton">
-                        <i class="fa fa-ellipsis-h"></i>
-                        <div class="message">分组选项菜单</div>
-                        <div class="toolbarDetail">
-                            <button class="rename">
-                                <i class="fa fa-pencil-square-o"></i>
-                                <span>
+        <div class="contanier">
+            <div class="mask"></div>
+
+            <div class="groupToolbar">
+                <div class="menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                <div class="groupName" contenteditable="true">默认分组</div>
+                <div class="toolbarButton">
+                    <i class="fa fa-ellipsis-h"></i>
+                    <div class="message">分组选项菜单</div>
+                    <div class="toolbarDetail">
+                        <button class="rename">
+                            <i class="fa fa-pencil-square-o"></i>
+                            <span>
                                     重命名分组
                                 </span>
-                            </button>
-                            <button class="delete">
-                                <i class="fa fa-trash-o"></i>
-                                <span>
+                        </button>
+                        <button class="delete">
+                            <i class="fa fa-trash-o"></i>
+                            <span>
                                     删除分组
                                 </span>
-                            </button>
+                        </button>
 
-                        </div>
                     </div>
-
                 </div>
 
-                <ul class="tasks">
-                    <li class="task-item">
-                        <div class="checkBox">
-                            <i class="fa fa-circle-thin"></i>
-                            <i class="fa fa-check-circle-o"></i>
-                        </div>
-                        <span class="task-name">事项1</span>
-                        <div class="importance"><i class="fa fa-star-o"></i></div>
-                    </li>
-                    <li class="task-item">
-                        <div class="checkBox">
-                            <i class="fa fa-circle-thin"></i>
-                            <i class="fa fa-check-circle-o"></i></div>
-                        <span class="task-name">事项2</span>
-                        <div class="importance"><i class="fa fa-star-o"></i></div>
-                    </li class="task-item">
-                    <li class="task-item">
-                        <div class="checkBox">
-                            <i class="fa fa-circle-thin"></i>
-                            <i class="fa fa-check-circle-o"></i>
-                        </div>
-                        <span class="task-name">事项3</span>
-                        <div class="importance">
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                    </li>
-                </ul>
-                <div class="splitLine">已完成 2</div>
-                <ul class="tasks checked">
-                    <li class="task-item">
-                        <div class="checkBox">
-                            <i class="fa fa-check-circle"></i>
-                        </div>
-                        <span class="task-name">事项1</span>
-                        <div class="importance" style="color: #0062cc;"><i class="fa fa-star"></i></div>
-                    </li>
-                    <li class="task-item">
-                        <div class="checkBox">
-                            <i class="fa fa-check-circle"></i>
-                        </div>
-                        <span class="task-name">事项2</span>
-                        <div class="importance"><i class="fa fa-star-o"></i></div>
-                    </li>
-                </ul>
-                <div class="addTask task-item">
-                    <i class="fa fa-plus"></i>
-                    <input placeholder="添加任务" value="" autocomplete="off"></input>
-                </div>
             </div>
-            <div class="task-detail rightColumn-exited">
-                <div class="warpper">
-                    <div class="detail-header">
-                        <div class="checkBox">
-                            <i class="fa fa-circle-thin"></i>
-                            <i class="fa fa-check-circle-o"></i>
-                        </div>
-                        <div class="modify-task-name" contenteditable="true"></div>
-                        <div class="importance">
-                            <i class="fa fa-star-o"></i>
-                        </div>
+
+            <ul class="tasks">
+                <li class="task-item">
+                    <div class="checkBox">
+                        <i class="fa fa-circle-thin"></i>
+                        <i class="fa fa-check-circle-o"></i>
                     </div>
-                    <div class="modify-deadline">
-                        <input type="date" value="2019-06-01" name="deadline"><br>
+                    <span class="task-name">事项1</span>
+                    <div class="importance"><i class="fa fa-star-o"></i></div>
+                </li>
+                <li class="task-item">
+                    <div class="checkBox">
+                        <i class="fa fa-circle-thin"></i>
+                        <i class="fa fa-check-circle-o"></i></div>
+                    <span class="task-name">事项2</span>
+                    <div class="importance"><i class="fa fa-star-o"></i></div>
+                </li>
+                <li class="task-item">
+                    <div class="checkBox">
+                        <i class="fa fa-circle-thin"></i>
+                        <i class="fa fa-check-circle-o"></i>
                     </div>
-                    <button class="add-to-toay">添加到“我的一天”</button>
-                    <div class="modify-note" contenteditable="true" data-placeholder="添加备注">
+                    <span class="task-name">事项3</span>
+                    <div class="importance">
+                        <i class="fa fa-star-o"></i>
                     </div>
-                    <button class="submit-task-modification">修改</button>
-                </div>
+                </li>
+            </ul>
+            <div class="splitLine">已完成 2</div>
+            <ul class="tasks checked">
+                <li class="task-item">
+                    <div class="checkBox">
+                        <i class="fa fa-check-circle"></i>
+                    </div>
+                    <span class="task-name">事项1</span>
+                    <div class="importance" style="color: #0062cc;"><i class="fa fa-star"></i></div>
+                </li>
+                <li class="task-item">
+                    <div class="checkBox">
+                        <i class="fa fa-check-circle"></i>
+                    </div>
+                    <span class="task-name">事项2</span>
+                    <div class="importance"><i class="fa fa-star-o"></i></div>
+                </li>
+            </ul>
+            <div class="addTask task-item">
+                <i class="fa fa-plus checkBox"></i>
+                <input placeholder="添加任务" value="" autocomplete="off"/>
             </div>
-        </main>
-    </div>
-    <script src="js/api/common.js" type="module"></script>
-    <script src="js/api/user.js" type="module"></script>
-    <script src="js/index.js" type="module"></script>
+        </div>
+        <div class="task-detail rightColumn-exited">
+            <div class="warpper">
+                <div class="detail-header task-detail-item">
+                    <div class="checkBox">
+                        <i class="fa fa-circle-thin"></i>
+                        <i class="fa fa-check-circle-o"></i>
+                    </div>
+                    <div class="modify-task-name" contenteditable="true"></div>
+                    <div class="importance">
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="modify-deadline task-detail-item">
+                    <input type="date" value="2019-06-01" name="deadline"><br>
+                </div>
+                <button class="add-to-toay task-detail-item">
+                    <i class="fa fa-sun-o"></i>
+                    <span>添加到“我的一天”</span>
+                </button>
+                <div class="modify-note task-detail-item" contenteditable="true" placeholder="添加备注"></div>
+                <button class="submit-task-modification task-detail-item">修改</button>
+                <button class="delete-task task-detail-item">
+                    <i class="fa fa-trash-o"></i>
+                    <span>删除任务</span></button>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="js/api/common.js" type="module"></script>
+<script src="js/api/user.js" type="module"></script>
+<script src="js/index.js" type="module"></script>
 </body>
 
 </html>

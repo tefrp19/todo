@@ -72,6 +72,6 @@ rename.addEventListener('click', () => {
 })
 // 如何知道当前操作的是哪个组里的任务？nowGroupId/nowTaskId
 
-import {login} from './api/user.js'
-login().then(res=>console.log(res))
+// import {login} from './api/user.js'
+// login().then(res=>console.log(res))
 
