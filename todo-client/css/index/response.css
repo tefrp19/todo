@@ -1,10 +1,6 @@
-@import url(../reset.css);
-/* 通用样式 */
-@import url(./common.css);
-
 /* 大屏三栏全部显示；平板右侧栏不显示（遮罩层）；手机左右侧都不显示（遮罩层） */
 /* 平板 */
-@media screen and (max-width:1200px) {
+@media screen and (max-width: 1200px) {
 
 
     .task-detail {
@@ -29,7 +25,7 @@
 }
 
 /* 手机 */
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
 
     aside {
         position: absolute;
@@ -37,6 +33,16 @@
         left: 0;
         width: 0;
         z-index: 1;
+    }
+
+    /* 左侧栏不展示 */
+    .leftColumn-exited {
+        width: 0;
+    }
+
+    /* 左侧栏展示 */
+    .leftColumn-entered {
+        width: 15rem;
     }
 
     .add-list {
@@ -55,6 +61,10 @@
 
     .contanier {
         padding: 0 1rem;
+    }
+
+    .addTask {
+        width: 94%;
     }
 
 

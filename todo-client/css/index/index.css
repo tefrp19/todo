@@ -1,0 +1,8 @@
+@import url(../reset.css);
+/* 左中右三栏布局的代码 */
+@import url(left.css);
+@import url(center.css);
+@import url(right.css);
+
+/* 响应式布局 */
+@import url(response.css);

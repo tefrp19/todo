@@ -18,13 +18,16 @@ mask.addEventListener('click', function (e) {
     // 右侧栏不展示
     taskDetail.classList.add('rightColumn-exited')
     taskDetail.classList.remove('rightColumn-entered')
-    // 左侧栏消失
+
+    // 隐藏左侧栏
+    if (window.innerWidth<=768){ //
     const aside = document.querySelector('aside')
-    aside.style.width = '0'
+        aside.classList.add('leftColumn-exited')
+        aside.classList.remove('leftColumn-entered')
+    }
 })
 
 function showTaskDetail(e) {
-    console.log();
     const windowInnerWidth = window.innerWidth
     if (windowInnerWidth <= 1200) { // 窗口是小屏或中屏才展示遮罩层
 
@@ -39,7 +42,8 @@ function showTaskDetail(e) {
 const menu = document.querySelector('.menu')
 menu.addEventListener('click', function (e) {
     const aside = document.querySelector('aside')
-    aside.style.width = '15rem'
+    aside.classList.add('leftColumn-entered')
+    taskDetail.classList.remove('leftColumn-exited')
     mask.style.display = 'block'
 })
 

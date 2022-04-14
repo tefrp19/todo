@@ -1,0 +1,115 @@
+
+.task-detail {
+    width: 20rem;
+    height: 100vh;
+    background-color: #EDEBE9;
+    display: flex;
+    flex-direction: column;
+    transition: width .3s ease;
+    position: relative;
+}
+
+.task-detail-item {
+    border: 1px solid #616161;
+    border-radius: 3px;
+    margin: 10px 0;
+    background-color: rgb(253, 253, 253);
+}
+
+.task-detail-item:hover {
+    background-color: #F3F3F3;
+}
+
+.detail-header {
+    height: 4rem;
+    border: 1px black solid;
+    display: flex;
+}
+
+.modify-task-name {
+    flex-grow: 1;
+    line-height: 4rem;
+}
+
+
+.modify-deadline {
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.modify-deadline input {
+    border: none;
+    background-color: transparent;
+}
+
+.add-to-toay {
+    background-color: #fff;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+}
+
+.add-to-toay i {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin: 0 5px;
+    color: #0062cc;
+}
+
+.add-to-toay:hover {
+    cursor: pointer;
+}
+
+.modify-note {
+    height: 100px;
+    overflow: auto;
+    padding: 10px;
+}
+
+.modify-note:empty::before {
+    content: attr(placeholder);
+    opacity: 0.5;
+}
+
+.submit-task-modification {
+    display: block;
+    margin: 0 auto;
+    height: 50px;
+    width: 150px;
+    background-color: #007bff;
+    text-align: center;
+    transition: background-color .3s;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+}
+
+.submit-task-modification:hover {
+    cursor: pointer;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.delete-task {
+    display: block;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 150px;
+    color: red;
+    border: none;
+    border-radius: 5px;
+}
+
+.delete-task:hover {
+    cursor: pointer;
+}
+
+.delete-task i {
+    margin: 0 5px;
+    font-size: 18px;
+}
