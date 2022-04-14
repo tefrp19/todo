@@ -114,6 +114,16 @@ exports.login = async (req, res) => {
     res.send(new Model())
 }
 
+// 查询用户信息
+exports.getUser = async (req, res) => {
+    const { userId } = req.session
+    const sql='select user_name from `user` where id=?'
+    const [{user_name:username}]=(await exec(sql,userId))
+    const data={
+        username
+    }
+    res.send(new Model(data))
+}
 // 检查session是否过期，即检查session中是否有userId，没有则代表对应cookie不存在或已超过时间
 exports.checkSession = (req, res, next) => {
     if (!req.session.userId) {
@@ -122,7 +132,6 @@ exports.checkSession = (req, res, next) => {
         next()
     }
 }
-
 // 登出
 exports.logout = async (req, res) => {
     delete req.session // 当session被删除时，redis中对应的数据项删除

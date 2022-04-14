@@ -4,10 +4,11 @@ const router = express.Router()
 // 思路：前面中间件将业务处理完交给后面的中间件（next()），若中间出错了（提交数据不合要求或系统错误等）：
 // 1.直接发送响应告知错误，结束该中间件服务（return）
 // 2.错误情况较多时最后写一个错误中间件，由错误中间件兜底（处理所有可能的错误）发送相应的错误信息
-const {checkRegister,register,checkLogin,login,logout} = require('../service/user')
+const {checkRegister,register,checkLogin,login,logout, getUser} = require('../service/user')
 router.post('/register', [checkRegister,register])
 router.post('/login', [checkLogin, login])
 router.get('/logout', logout)
+router.get('/user', getUser)
 
 const {getGroups,addGroup,modifyGroup,deleteGroup}=require('../service/group')
 router.get('/groups',getGroups)
