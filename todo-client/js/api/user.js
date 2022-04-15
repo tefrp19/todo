@@ -8,7 +8,11 @@ export const login = async (data) => {
     return await fetchData('/login', 'post', data);
 }
 
-export const logout=async ()=>{
-    return await fetchData('/logout','get')
+export const getUser = async () => {
+    return await fetchData('/user', 'get');
+}
+
+export const logout = async () => {
+    return await fetchData('/logout', 'get')
 }
 

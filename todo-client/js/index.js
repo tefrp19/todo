@@ -55,25 +55,7 @@ btn.addEventListener('click', () => {
     date.value = '2017-06-01'
 })
 
-// 
-const groupNameDom = document.querySelector('.groupName')
-let oldName
-groupNameDom.addEventListener('focus', function (e) {
-    oldName = e.target.innerText
-})
-groupNameDom.addEventListener('blur', function (e) {
-    if (e.target.innerText !== oldName) {
-        console.log(e.target.innerText);
-    }
-})
-const rename = document.querySelector('.rename')
-rename.addEventListener('click', () => {
-    // 全选
-    const range = document.createRange();
-    range.selectNodeContents(groupNameDom);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-})
+
 // 如何知道当前操作的是哪个组里的任务？nowGroupId/nowTaskId
 
 // import {login} from './api/user.js'

@@ -1,18 +1,35 @@
 import fetchparams from './common.js';
 
 export const getGroups = async () => {
-    return await fetchparams('/groups','get')
+    return await fetchparams('/groups', 'get')
 }
 
-export const addGroup = async (params) => {
-    return await fetchparams('/groups','post',params)
+/**
+ * 
+ * @param {string} name
+ * @returns 
+ */
+export const addGroup = async (name) => {
+    return await fetchparams('/groups', 'post', { name })
 }
 
+/**
+ * 
+ * @param {Object} params
+ * @param {number} params.id
+ * @param {string} params.name
+ * @returns 
+ */
 export const modifyGroup = async (params) => {
-    return await fetchparams(`/groups/${params.groupId}`,'put',params)
+    return await fetchparams(`/groups/${params.id}`, 'put', params)
 }
 
-export const deleteGroup = async (params) => {
-    return await fetchparams(`/groups/${params.groupId}`,'delete')
+/**
+ * 
+ * @param {number} id
+ * @returns 
+ */
+export const deleteGroup = async (id) => {
+    return await fetchparams(`/groups/${id}`, 'delete')
 }
 
