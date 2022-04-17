@@ -48,12 +48,13 @@ aside span {
 }
 
 .groups {
+    max-height: 73vh;
     /* 分组较少时把剩余空间填充完 */
     flex-grow: 1;
     /* 有多个分组时，y轴出现滚轮 */
     overflow-y: auto;
     /* 使最后一个元素不被添加列表按钮遮挡 */
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
 }
 
 .group-item {

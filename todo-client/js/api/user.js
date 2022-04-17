@@ -1,4 +1,4 @@
-import fetchData from './common.js';
+import fetchData from './app.js';
 
 export const register = async (data) => {
     return await fetchData('/register', 'post', data);

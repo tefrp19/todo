@@ -1,4 +1,4 @@
-import fetchparams from './common.js';
+import fetchparams from './app.js';
 
 export const getGroups = async () => {
     return await fetchparams('/groups', 'get')

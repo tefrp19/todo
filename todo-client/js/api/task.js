@@ -1,4 +1,4 @@
-import fetchparams from './common.js';
+import fetchparams from './app.js';
 
 export const getTasks=async (groupId)=>{
     return await fetchparams(`/groups/${groupId}/tasks`,'get')

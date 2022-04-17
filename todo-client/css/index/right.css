@@ -1,4 +1,3 @@
-
 .task-detail {
     width: 20rem;
     height: 100vh;
@@ -26,11 +25,18 @@
     display: flex;
 }
 
+.detail-header.checked {
+    padding-bottom: 0;
+}
+
 .modify-task-name {
     flex-grow: 1;
     line-height: 4rem;
 }
 
+.checked .modify-task-name {
+    text-decoration: line-through;
+}
 
 .modify-deadline {
     height: 3rem;
@@ -74,7 +80,7 @@
     opacity: 0.5;
 }
 
-.submit-task-modification {
+/* .submit-task-modification {
     display: block;
     margin: 0 auto;
     height: 50px;
@@ -85,13 +91,13 @@
     border-radius: 5px;
     color: #fff;
     border: none;
-}
+} */
 
-.submit-task-modification:hover {
+/* .submit-task-modification:hover {
     cursor: pointer;
     background-color: #0069d9;
     border-color: #0062cc;
-}
+} */
 
 .delete-task {
     display: block;
