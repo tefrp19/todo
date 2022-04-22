@@ -1,5 +1,11 @@
-const noCheckedTasksNode = document.querySelector('.tasks')
-const checkedTasksNode = document.querySelector('.tasks.checked')
+/**
+ * 修改分组名字
+ * @param {string} name 
+ */
+export const modifyGroupName = (name) => {
+    document.querySelector('.groupName').textContent = name
+}
+
 /**
  * 添加任务节点
  * @param {Object} taskInfo
@@ -9,6 +15,8 @@ const checkedTasksNode = document.querySelector('.tasks.checked')
  * @param {number} taskInfo.important
  */
 export const addTaskNode = (taskInfo) => {
+    const noCheckedTasksNode = document.querySelector('.tasks')
+    const checkedTasksNode = document.querySelector('.tasks.checked')
     const taskNode = document.createElement('li')
     taskNode.classList.add('task-item')
     taskNode.dataset.id = taskInfo.id

@@ -55,6 +55,9 @@ aside span {
     overflow-y: auto;
     /* 使最后一个元素不被添加列表按钮遮挡 */
     padding-bottom: 4rem;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .group-item {

@@ -13,6 +13,7 @@ dateNode.addEventListener('change', function (e) {
     console.log(e.target.value);
 })
 
+
 // addDetailHeaderNode({
 //     check:0,
 //     name:'记得完成xxx',

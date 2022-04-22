@@ -47,14 +47,13 @@ main {
 
 .groupName {
     font-size: 24px;
-    max-width: 300px;
+    max-width: 500px;
     /*  1.不换行
         2.文字内容溢出的部分隐藏
         3.以省略号代替溢出部分
     */
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .toolbarButton {
