@@ -16,11 +16,19 @@ const transTasksDate = (tasks = []) => {
     })
 }
 
-exports.getTasks = async (req, res) => {
+exports.getTasks = async (req, res,next) => {
     const { userId } = req.session
     const { id: groupId } = req.params
+    console.log(req.params)
+    // 检验前端传的字段是否有效
+    // if (!checkParams(params, ['name'])) {
+    //     next('paramsError')
+    //     return
+    // }
     const sql = 'select id,name,note,deadline,`check`,important,today from task where group_id=? and user_id=?;'
+    console.log([groupId, userId])
     const tasks = await exec(sql, [groupId, userId])
+    console.log(tasks)
     transTasksDate(tasks)
     res.send(new Model(tasks))
 }

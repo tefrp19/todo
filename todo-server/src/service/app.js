@@ -6,11 +6,10 @@ const corsOptions = {
     // 当请求带有cookie响应头Access-Control-Allow不能为*，否则会被同源策略限制
     origin: 'http://127.0.0.1:5502',
     // 当fetch要带有cookie时， Access-Control-Allow-Credentials需要设置为true
-    credentials: true
+    credentials: true,
 }
 exports.cors = cors(corsOptions)
 
-// 导入 body-parser 中间件解析数据
 const bodyParser = require('body-parser')
 
 exports.bodyParserJson = bodyParser.json() // 将请求体的json数据解析为js对象，添加到req.body属性上
@@ -28,7 +27,6 @@ exports.checkParams=(params,needCheckParams)=>{
         if (!params[param]) {
             return false
         }
-        
     }
     return true
 }
