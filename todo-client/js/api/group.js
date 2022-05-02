@@ -9,7 +9,7 @@ export const getGroups = async () => {
  * @param {string} name
  * @returns 
  */
-export const addGroup = async (name) => {
+export const addGroupApi = async (name) => {
     return await fetchparams('/groups', 'post', { name })
 }
 

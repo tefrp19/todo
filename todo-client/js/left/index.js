@@ -1,5 +1,5 @@
 import { getUser } from '../api/user.js'
-import { getGroups, addGroup, deleteGroup, } from '../api/group.js'
+import { getGroups, addGroupApi, deleteGroup, } from '../api/group.js'
 import { addGroupNode, modifyGroupNode, deleteGroupNode } from './dom.js'
 import { addTaskNode, modifyGroupName, modifyTaskNode } from '../center/dom.js'
 import { getTasks } from '../api/task.js';
@@ -11,20 +11,21 @@ const usernameNode = document.querySelector('.username');
     usernameNode.textContent = username
 })();
 
-// 获取分组列表
-(async () => {
-    const res = await getGroups()
-    const groupsInfo = res.data
+// 添加左侧分组列表（网络请求+渲染节点）
+export const addGroups = async () => {
+    const {data:groupsInfo} = await getGroups()
     // 添加分组节点
     for (const groupInfo of groupsInfo) {
         addGroupNode(groupInfo)
     }
-})()
+}
+addGroups()
 
 // 记录当前正在操作的分组和任务的id
 export const globalVar = {
     nowGroupId: null,
     nowTaskId: null,
+    nowTasksInfo: null,
 }
 
 // 为分组添列表添加点击事件：获取任务列表
@@ -42,14 +43,18 @@ const changeCenter = async function (e) {
         targetGroupNode = target.parentNode
     }
     // 如果点击是相同的分组则不执行后续操作
-    if (targetGroupNode.dataset.id===globalVar.nowGroupId) {
+    if (targetGroupNode.dataset.id === globalVar.nowGroupId) {
         return
     }
     groupName = targetGroupNode.querySelector('span').textContent
     modifyGroupName(groupName)
-    // 切换任务列表
+    // 切换任务列表：
+    // 1.删除原来节点
+    // 2.添加新节点：网络请求+渲染dom
     globalVar.nowGroupId = targetGroupNode.dataset.id
-    const {data:tasksInfo}=await getTasks(globalVar.nowGroupId) 
+    const { data: tasksInfo } = await getTasks(globalVar.nowGroupId)
+
+    globalVar.nowTasksInfo = tasksInfo
     for (const taskInfo of tasksInfo) {
         addTaskNode(taskInfo)
     }
@@ -63,7 +68,7 @@ const addGroupEvent = async function (e) {
     const inputValue = e.target.value
     if (inputValue !== '' && (e.type === 'keydown' && e.keyCode === 13 || e.type === 'blur')) {
         console.log(inputValue);
-        await addGroup(inputValue)
+        await addGroupApi(inputValue)
     }
 }
 addGroupInputNode.addEventListener('blur', addGroupEvent)

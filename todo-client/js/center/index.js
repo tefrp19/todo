@@ -59,6 +59,8 @@ const deleteGroupEvent = () => {
 }
 deleteGroupNode.addEventListener('click', deleteGroupEvent)
 
+globalVar.nowTasksInfo
+// 添加新节点
 addTaskNode({
     id: 5,
     check: 0,
