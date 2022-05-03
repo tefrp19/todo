@@ -1,6 +1,6 @@
 import { modifyGroup, deleteGroup } from '../api/group.js'
 import { addTaskNode, deleteTaskNode, modifyTaskNode } from './dom.js'
-import {globalVar} from '../left/index.js'
+import {addGroups, getGroupsInfo, globalVar} from '../left/index.js'
 
 // 点击分组操作按钮出现下拉框，点击其他地方下拉框消失
 const toolbarButton = document.querySelector('.toolbarButton')
@@ -59,6 +59,11 @@ const deleteGroupEvent = () => {
 }
 deleteGroupNode.addEventListener('click', deleteGroupEvent)
 
+
+const addTasks=async()=>{
+    await addGroups()
+
+}
 globalVar.nowTasksInfo
 // 添加新节点
 addTaskNode({
