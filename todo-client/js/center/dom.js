@@ -2,7 +2,7 @@
  * 修改分组名字
  * @param {string} name 
  */
-export const modifyGroupName = (name) => {
+export const modifyGroupNodeName = (name) => {
     document.querySelector('.groupName').textContent = name
 }
 

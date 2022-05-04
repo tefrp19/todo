@@ -1,7 +1,7 @@
 import { getUser } from '../api/user.js'
 import { getGroups, addGroupApi, deleteGroup, } from '../api/group.js'
 import { addGroupNode, modifyGroupNode, deleteGroupNode } from './dom.js'
-import { addTaskNode, modifyGroupName, modifyTaskNode } from '../center/dom.js'
+import { addTaskNode, modifyGroupNodeName, modifyTaskNode } from '../center/dom.js'
 import { getTasks } from '../api/task.js';
 // 更改用户名
 const usernameNode = document.querySelector('.username');
@@ -47,7 +47,7 @@ const changeCenter = async function (e) {
         return
     }
     groupName = targetGroupNode.querySelector('span').textContent
-    modifyGroupName(groupName)
+    modifyGroupNodeName(groupName)
     // 切换任务列表：
     // 1.删除原来节点
     // 2.添加新节点：网络请求+渲染dom

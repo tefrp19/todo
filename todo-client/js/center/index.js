@@ -1,5 +1,5 @@
 import { modifyGroup, deleteGroup } from '../api/group.js'
-import { addTaskNode, deleteTaskNode, modifyTaskNode } from './dom.js'
+import { addTaskNode, deleteTaskNode, modifyGroupNodeName, modifyTaskNode } from './dom.js'
 import {addGroups, getGroupsInfo, globalVar} from '../left/index.js'
 
 // 点击分组操作按钮出现下拉框，点击其他地方下拉框消失
@@ -59,7 +59,15 @@ const deleteGroupEvent = () => {
 }
 deleteGroupNode.addEventListener('click', deleteGroupEvent)
 
-
+/**
+ * 修改中间视图
+ * @param {Object} param
+ * @param {string} groupName
+ * @param {number} groupId
+ */
+const changeCenterView=(param)=>{
+    modifyGroupNodeName()
+}
 const addTasks=async()=>{
     await addGroups()
 
