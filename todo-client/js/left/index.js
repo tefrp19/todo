@@ -58,6 +58,7 @@ const changeCenter = async function (e) {
     for (const taskInfo of tasksInfo) {
         addTaskNode(taskInfo)
     }
+    
     console.log(tasksInfo);
 }
 groupsNode.addEventListener('click', changeCenter)
