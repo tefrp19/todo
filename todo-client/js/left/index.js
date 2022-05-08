@@ -57,10 +57,11 @@ const changeCenter = async function (e) {
     globalVar.nowTasksInfo = tasksInfo
     for (const taskInfo of tasksInfo) {
         addTaskNode(taskInfo)
-    }    
+    }
     console.log(tasksInfo);
 }
 groupsNode.addEventListener('click', changeCenter)
+
 
 // 为添加分组的输入框添加失去焦点和回车事件
 const addGroupInputNode = document.querySelector('.addGroup input')
