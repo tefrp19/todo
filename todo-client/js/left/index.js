@@ -62,7 +62,6 @@ const changeCenter = async function (e) {
 }
 groupsNode.addEventListener('click', changeCenter)
 
-
 // 为添加分组的输入框添加失去焦点和回车事件
 const addGroupInputNode = document.querySelector('.addGroup input')
 const addGroupEvent = async function (e) {
