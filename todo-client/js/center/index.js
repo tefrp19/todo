@@ -11,7 +11,6 @@ toolbarButton.addEventListener('click', () => {
 })
 document.addEventListener('click', function (e) {
     
-    
     // 先尝试用事件冒泡捕获能不能解决，再计算坐标
     const target = e.target
 
