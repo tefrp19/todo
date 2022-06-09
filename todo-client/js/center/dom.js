@@ -42,6 +42,7 @@ export const addTaskNode = (taskInfo) => {
         <i class="fa fa-check-circle"></i>
     </div>`
     }
+    
 
     taskNode.innerHTML = `
         ${checkBoxNode}
