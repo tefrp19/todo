@@ -43,6 +43,7 @@ export const addTaskNode = (taskInfo) => {
     </div>`
     }
     
+    
     taskNode.innerHTML = `
         ${checkBoxNode}
         <span class="task-name">${taskInfo.name}</span>
