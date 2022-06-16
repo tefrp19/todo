@@ -48,6 +48,7 @@ export const addTaskNode = (taskInfo) => {
         <span class="task-name">${taskInfo.name}</span>
         ${importanceNode}
     `
+    
     if (taskInfo.check === 0) {
         noCheckedTasksNode.appendChild(taskNode)
     } else {
