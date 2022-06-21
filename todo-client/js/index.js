@@ -13,7 +13,6 @@ tasks.addEventListener('click', function (e) {
 const mask = document.querySelector('.mask')
 const taskDetail = document.querySelector('.task-detail')
 
-
 mask.addEventListener('click', function (e) {
     mask.style.display = 'none'
     // 右侧栏不展示
