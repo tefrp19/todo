@@ -15,7 +15,7 @@ export const login = (username, password) => {
 const getAllMatters_ajax = () => {
     //当promise对象被创建时会被立即执行，所以在其外侧包裹一个函数是一个可以控制promise对象较好的做法
     return new Promise((resolve, reject) => {
-        //1.创建xhr对象
+        // 1.创建xhr对象
         const xhr = new XMLHttpRequest()
         // 2.初始化 设置请求方法和url
         xhr.open("get", `http://${ip}/findAllMatters`)
