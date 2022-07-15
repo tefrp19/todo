@@ -13,6 +13,7 @@ form.addEventListener('submit', async e => {
     if (res.status === 200) {
         location.href = '/index.html'
     } else {
+        
         alert('登录失败')
     }
 
