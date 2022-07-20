@@ -1,9 +1,3 @@
-// 判断用户是否登录
-const isLogin=false
-
-// 1.登录页进入主页
-// 2.直接进入主页
-// 3.cookie过期
 
 let tasks = document.querySelector('.tasks')
 tasks.addEventListener('click', function (e) {

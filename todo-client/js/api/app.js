@@ -12,4 +12,8 @@ const fetchData = (path, method, params) => {
         body: params?JSON.stringify(params):null,
     }).then(res => res.json())
 };
+
+
+// 封装ajax
+
 export default fetchData 

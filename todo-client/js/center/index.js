@@ -1,26 +1,18 @@
 import { modifyGroup, deleteGroup } from '../api/group.js'
 import { addTaskNode, deleteTaskNode, modifyGroupNodeName, modifyTaskNode } from './dom.js'
-import {addGroups, getGroupsInfo, globalVar} from '../left/index.js'
+import { addGroups, globalVar } from '../left/index.js'
 
 // 点击分组操作按钮出现下拉框，点击其他地方下拉框消失
 const toolbarButton = document.querySelector('.toolbarButton')
 const toolbarDetail = document.querySelector('.toolbarDetail')
 toolbarButton.addEventListener('click', () => {
     toolbarDetail.style.height = '80px'
-    console.log(globalVar);
 })
 document.addEventListener('click', function (e) {
-    
-    // 先尝试用事件冒泡捕获能不能解决，再计算坐标
-    const target = e.target
-
-    // console.log(target);
-    // if (!target.matches('.toolbarDetail')||!target.matches('.rename')||!target.matches('.delete')) {
-    //     console.log('下拉框消失');
-    // }
-    // if (target.className!=='rename') {
-    //     console.log('下拉框消失');
-    // }
+    // 点击其他地方下拉框消失
+    if (!e.target.matches('.fa-ellipsis-h')) {
+        toolbarDetail.style.height = '0px'
+    }
 })
 
 // 分组重命名
@@ -36,8 +28,8 @@ const modifyGroupEvent = async function (e) {
         e.preventDefault() // 禁用回车换行的默认事件
         console.log(inputValue);
         modifyGroup({
-            id:globalVar.nowGroupId,
-            name:inputValue
+            id: globalVar.nowGroupId,
+            name: inputValue
         })
     }
 }
@@ -65,10 +57,10 @@ deleteGroupNode.addEventListener('click', deleteGroupEvent)
  * @param {string} groupName
  * @param {number} groupId
  */
-const changeCenterView=(param)=>{
+const changeCenterView = (param) => {
     modifyGroupNodeName()
 }
-const addTasks=async()=>{
+const addTasks = async () => {
     await addGroups()
 
 }
@@ -83,7 +75,7 @@ addTaskNode({
 
 modifyTaskNode({
     id: 5,
-    name:'任务456'
+    name: '任务456'
 })
 
 // 为任务列表添加点击事件：获取任务详情

@@ -10,10 +10,11 @@ form.addEventListener('submit', async e => {
     const password = document.querySelector('input[placeholder="Password"]').value
     const data = { username, password }
     const res = await login(data)
+    console.log(res);
     if (res.status === 200) {
         location.href = '/index.html'
     } else {
-        
+
         alert('登录失败')
     }
 

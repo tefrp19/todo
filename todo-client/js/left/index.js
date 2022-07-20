@@ -7,13 +7,22 @@ import { getTasks } from '../api/task.js';
 const usernameNode = document.querySelector('.username');
 (async () => {
     const res = await getUser()
+    if (res.message === 'session无效，请登录') {
+        // 提示session请登录
+
+        setTimeout(() => {
+            location.href = 'login.html'
+
+        }, 3000)
+        return
+    }
     const { username } = res.data
     usernameNode.textContent = username
 })();
 
 // 添加左侧分组列表（网络请求+渲染节点）
 export const addGroups = async () => {
-    const {data:groupsInfo} = await getGroups()
+    const { data: groupsInfo } = await getGroups()
     // 添加分组节点
     for (const groupInfo of groupsInfo) {
         addGroupNode(groupInfo)
